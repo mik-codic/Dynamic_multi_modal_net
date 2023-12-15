@@ -26,11 +26,11 @@ def extract_statistics(video_path,folder):
                 video_resolution = video.size
 
                 # Print the extracted statistics
-                print(f"\nvideo path: {video_path+file}")
-                print(f"Audio sample rate: {audio_sample_rate}")
-                print(f"Video FPS: {video_fps}")
-                print(f"Video length: {video_length}")
-                print(f"Video resolution: {video_resolution}")
+                # print(f"\nvideo path: {video_path+file}")
+                # print(f"Audio sample rate: {audio_sample_rate}")
+                # print(f"Video FPS: {video_fps}")
+                # print(f"Video length: {video_length}")
+                # print(f"Video resolution: {video_resolution}")
     else:
         # Load the video file
         video = mp.VideoFileClip(video_path)
@@ -48,11 +48,11 @@ def extract_statistics(video_path,folder):
         video_resolution = video.size
 
         # Print the extracted statistics
-        print(f"\nvideo path: {video_path}")
-        print(f"Audio sample rate: {audio_sample_rate}")
-        print(f"Video FPS: {video_fps}")
-        print(f"Video length: {video_length}")
-        print(f"Video resolution: {video_resolution}")
+        # print(f"\nvideo path: {video_path}")
+        # print(f"Audio sample rate: {audio_sample_rate}")
+        # print(f"Video FPS: {video_fps}")
+        # print(f"Video length: {video_length}")
+        # print(f"Video resolution: {video_resolution}")
     return audio_sample_rate,video_fps,video_length,video_resolution
 # Example usage
 # video_path = "/Users/michelepresutto/Desktop/Intership Folder/data_script/data_set/train/"

@@ -10,6 +10,7 @@ from data_stats import extract_statistics
 def extract(path):
     # Load the image
     audio, sr = torchaudio.load(path+"/output.mp3")
+    print("\nraw audio minimum\n",torch.min(audio))
     print("audio and sample_rate",audio,sr)
     #sr,fps,vid_len,resolution = extract_statistics(path,folder=False)
     scale = 0.5
@@ -43,6 +44,7 @@ def extract(path):
         spec
         #logmel_extractor
     )
+    
     a = feature_extractor(audio)
     a = a.log()
     #a = a.detach().numpy()
@@ -53,22 +55,26 @@ def extract(path):
     # a = a.transpose(1, 3)
     # print(a.size())
     
-    # Display the spectrogram    
+    # Display the spectrogram
+    #print("\nminimum before normalizing\n",np.min(a))    
     print("\nspectrum shape:\n",a.shape)
+    print("\nbefore np\n", torch.min(a))
     #plt.imsave(path+"/spectrogram.png",a)
-    print("\nfirst image spect\n",len(a[0]))
     a = np.squeeze(a.detach().numpy())
     a = a.transpose(2,1,0)
-    pad = np.zeros_like(a)
-    a = np.concatenate((a, pad[...,0:1]),axis=2)
-    print(a.shape)
-    print(np.max(a),np.min(a))
-    a_norm = (a-np.min(a))/(np.max(a)-np.min(a))
+    
+    
+    print(a)
+    print("minimo",np.min(a))
+    print(np.max(a),np.nanmin(a[a != -np.inf]))
+    a_norm = (a-np.nanmin(a[a != -np.inf]))/(np.max(a)-np.nanmin(a[a != -np.inf]))
     a_norm = (a_norm*255).astype(np.uint8)
     a_norm = a_norm[:-1]
+    pad = np.zeros_like(a_norm)
+    a_norm = np.concatenate((a_norm, pad[...,0:1]),axis=2)
     im = Image.fromarray(a_norm)
     
-    im.save(path+"/spectrogram.png")
+    im.save(path+"/full_spectrogram.png")
     #exit()
     # fig = plt.figure(figsize=(5, 5),frameon=False)
 
