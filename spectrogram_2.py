@@ -8,7 +8,6 @@ from PIL import Image
 from data_stats import extract_statistics
         
 def extract(path):
-    # Load the image
     audio, sr = torchaudio.load(path+"/output.mp3")
     print("\nraw audio minimum\n",torch.min(audio))
     print("audio and sample_rate",audio,sr)
@@ -75,24 +74,7 @@ def extract(path):
     im = Image.fromarray(a_norm)
     
     im.save(path+"/full_spectrogram.png")
-    #exit()
-    # fig = plt.figure(figsize=(5, 5),frameon=False)
 
-    # ax = plt.Axes(fig, [0., 0., 1., 1.])
-    # ax.set_axis_off()
-    # fig.add_axes(ax)   
-    # ax.imshow(a[0].T, aspect='auto')
-    # fig.savefig(path+"/spectrogram.png")
-
-    # plt.imshow(a[0].T, origin='lower', aspect='auto')
-    # print("\nshape of a\n",a.shape)
-    # plt.savefig(path+"/spectrogram.png")
-    # #plt.colorbar(format='%+2.0f dB')
-    # #plt.title('Spectrogram')
-    # plt.show()
-
-# Example usage data_set/train/A.Beautiful.Mind.2001__#00-25-20_00-29-20_label_A.mp4
-#extract("/Users/michelepresutto/Desktop/Intership Folder/data_script/data_set/train/A.Beautiful.Mind.2001__#00-25-20_00-29-20_label_A.mp4")
 path="/Users/michelepresutto/Desktop/Intership Folder/data_script/data_set/unpacked/frames-A.Beautiful.Mind.2001__#00-25-20_00-29-20_label_A.mp4/audio.wav"
 path3 = "/Users/michelepresutto/Desktop/Intership Folder/data_script/code/Audio-Bus256.wav"
 pat_2 = "/Users/michelepresutto/Desktop/Intership Folder/data_script/data_set/unpacked/frames-v=cO1UefhG7AY__#1_label_G-0-0.mp4/audio.wav"
